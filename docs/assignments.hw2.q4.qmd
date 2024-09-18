@@ -1,0 +1,197 @@
+
+---
+format:
+  html: {toc: true, toc-depth: 3, theme: cosmo, number-sections: false, output-file: assignments.hw2.q4.html}
+fontsize: 0.9em
+code-block-background: true
+include-in-header: {text: '<link rel = "icon" href = "data:," />'}
+toc-title-numbers: false
+number-depth: 0
+
+---
+<style></style><style>.printedClojure .sourceCode {
+  background-color: transparent;
+  border-style: none;
+}
+</style><style>.clay-limit-image-width .clay-image {max-width: 100%}
+.clay-side-by-side .sourceCode {margin: 0}
+.clay-side-by-side {margin: 1em 0}
+</style>
+<script src="assignments.hw2.q4_files/md-default0.js" type="text/javascript"></script><script src="assignments.hw2.q4_files/md-default1.js" type="text/javascript"></script><script src="assignments.hw2.q4_files/katex2.js" type="text/javascript"></script><link href="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css" rel="stylesheet" type="text/css" />
+
+::: {.sourceClojure}
+```clojure
+(ns assignments.hw2.q4
+  (:require
+    [assignments.hw2.utils :refer :all]
+    [fastmath.core :as m]))
+```
+:::
+
+
+## Question 4
+---
+
+#### *4.1) If P(A|B) < P(A), show that P(B|A) < P(B).*
+
+To prove this, we'll use the definition of conditional probability and algebraic manipulation:
+
+$$P(A|B) = P(A ∩ B) / P(B)$$
+
+$$P(B|A) = P(A ∩ B) / P(A)$$
+
+**Given:** $P(A|B) < P(A)$
+
+**Step 1:** Express the inequality using the definition of conditional probability
+
+$$P(A ∩ B) / P(B) < P(A)$$
+
+**Step 2:** Multiply both sides by $P(B)$
+
+$$P(A ∩ B) < P(A) * P(B)$$
+
+**Step 3:** Divide both sides by $P(A)$
+
+$$P(A ∩ B) / P(A) < P(B)$$
+
+**Step 4:** Recognize the left side as $P(B|A)$
+
+$$P(B|A) < P(B)$$
+
+
+::: {.sourceClojure}
+```clojure
+(answer
+  "Thus, we have shown that if $P(A|B) < P(A)$, then $P(B|A) < P(B)$.")
+```
+:::
+
+
+> <span style="color: black; font-size: 1.5em;">**Thus, we have shown that if $P(A|B) < P(A)$, then $P(B|A) < P(B)$.**</span>
+
+#### *4.2) If A and B are mutually exclusive, find P(A|B). If A and B are independent, find P(A|B).*
+
+**Case 1: A and B are mutually exclusive**
+
+Mutually exclusive events have no overlap, meaning $A ∩ B = ∅$
+
+$$P(A|B) = P(A ∩ B) / P(B) = 0 / P(B) = 0$$
+
+**Case 2: A and B are independent**
+
+For independent events, $P(A ∩ B) = P(A) * P(B)$
+
+$$P(A|B) = P(A ∩ B) / P(B) = (P(A) * P(B)) / P(B) = P(A)$$
+
+
+::: {.sourceClojure}
+```clojure
+(answer "If A and B are mutually exclusive: $P(A|B) = 0$")
+```
+:::
+
+
+> <span style="color: black; font-size: 1.5em;">**If A and B are mutually exclusive: $P(A|B) = 0$**</span>
+
+
+::: {.sourceClojure}
+```clojure
+(answer "If A and B are independent: $P(A|B) = P(A)$")
+```
+:::
+
+
+> <span style="color: black; font-size: 1.5em;">**If A and B are independent: $P(A|B) = P(A)$**</span>
+
+**Implementation:**
+
+
+::: {.sourceClojure}
+```clojure
+(defn demonstrate-conditional-probability-inequality [p-a p-b p-a-and-b]
+  (let [p-a-given-b (/ p-a-and-b p-b)
+        p-b-given-a (/ p-a-and-b p-a)]
+    (md (str "Given:"))
+    (md (str "P(A) = " p-a))
+    (md (str "P(B) = " p-b))
+    (md (str "P(A ∩ B) = " p-a-and-b))
+    (md (str "P(A|B) = " (m/approx p-a-given-b 4)))
+    (md (str "P(B|A) = " (m/approx p-b-given-a 4)))
+    (md (str "P(A|B) < P(A): " (< p-a-given-b p-a)))
+    (md (str "P(B|A) < P(B): " (< p-b-given-a p-b)))))
+```
+:::
+
+
+Demonstration of the proof:
+
+P(B|A) < P(B): true
+
+In this example:
+
+ - P(A) = 0.5
+ - P(B) = 0.4
+ - P(A ∩ B) = 0.1
+ - P(A|B) = P(A ∩ B) / P(B) = 0.1 / 0.4 = 0.25
+
+ Since P(A|B) = 0.25 < P(A) = 0.5, this example satisfies the condition P(A|B) < P(A).
+
+
+::: {.sourceClojure}
+```clojure
+(defn conditional-probability [p-a p-b intersection type]
+  (case type
+    :mutually-exclusive 0
+    :independent p-a
+    (/ intersection p-b)))
+```
+:::
+
+
+Demonstration for mutually exclusive events:
+
+
+::: {.sourceClojure}
+```clojure
+(let [p-a 0.3 p-b 0.4]
+  (answer (str "P(A|B) for mutually exclusive events: "
+               (conditional-probability p-a p-b 0 :mutually-exclusive))))
+```
+:::
+
+
+> <span style="color: black; font-size: 1.5em;">**P(A|B) for mutually exclusive events: 0**</span>
+
+Demonstration for independent events:
+
+
+::: {.sourceClojure}
+```clojure
+(let [p-a 0.3 p-b 0.4]
+  (answer (str "P(A|B) for independent events: "
+               (conditional-probability p-a p-b (* p-a p-b) :independent))))
+```
+:::
+
+
+> <span style="color: black; font-size: 1.5em;">**P(A|B) for independent events: 0.3**</span>
+
+**Conclusion:**
+
+We have demonstrated both algebraically and numerically that:
+1. If P(A|B) < P(A), then P(B|A) < P(B).
+2. For mutually exclusive events, P(A|B) = 0.
+3. For independent events, P(A|B) = P(A).
+
+These results are fundamental in understanding the relationships between events in probability theory.
+
+
+```{=html}
+<div style="background-color:grey;height:2px;width:100%;"></div>
+```
+
+
+
+```{=html}
+<div><pre><small><small>source: <a href="https://github.com/adabwana/f24-m6410-hw2/blob/master/src/assignments/hw2/q4.clj">src/assignments/hw2/q4.clj</a></small></small></pre></div>
+```
