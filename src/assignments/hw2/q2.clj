@@ -1,6 +1,6 @@
-(ns assignments.hw1.q2
+(ns assignments.hw2.q2
   (:require
-    [assignments.hw1.utils :refer :all]
+    [assignments.hw2.utils :refer :all]
     [fastmath.core :as m]))
 
 (question "Question 2")
@@ -55,8 +55,8 @@
       p-at-least-one (probability-at-least-one [p-male p-glasses p-senior])]
   (answer
     (str
-       "P(male OR glasses OR senior) = " (m/approx p-at-least-one 4) ";   &nbsp;"
-       "P(none of the characteristics) = " (m/approx (- 1 p-at-least-one) 4))))
+      "P(male OR glasses OR senior) = " (m/approx p-at-least-one 4) ";   &nbsp;"
+      "P(none of the characteristics) = " (m/approx (- 1 p-at-least-one) 4))))
 
 (md
   "This assignment is valid because:

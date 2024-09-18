@@ -1,8 +1,7 @@
 ^:kindly/hide-code
 (ns index
   (:require 
-       [assignments.hw2.utils :refer [question answer md]]
-       [scicloj.kindly.v4.kind :as kind])
+       [assignments.hw2.utils :refer [question answer md]])
   (:import [java.time LocalDate]
            [java.time.format DateTimeFormatter]))
 

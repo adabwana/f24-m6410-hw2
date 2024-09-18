@@ -1,6 +1,6 @@
-(ns assignments.hw1.q4
+(ns assignments.hw2.q4
   (:require
-    [assignments.hw1.utils :refer :all]
+    [assignments.hw2.utils :refer :all]
     [fastmath.core :as m]))
 
 (question "Question 4")

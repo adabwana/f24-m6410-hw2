@@ -1,4 +1,4 @@
-(ns assignments.hw1.utils
+(ns assignments.hw2.utils
   (:require
    [clojure.math.combinatorics :as combo]
    [scicloj.kindly.v4.api :as kindly]
@@ -196,30 +196,30 @@
           (reduce * (range 1 (inc (- n k))))))))
 
 (defn nck
-    "Calculates the binomial coefficient (n choose k) using iterative and recusive method.
-   n: total number of items
-   k: number of items to choose"
-    [n k]
-    (if (or (< k 0) (> k n))
-      0
-      (let [k (min k (- n k))] ; Take advantage of symmetry
-        (loop [result 1N, i 0]
-          (if (= i k)
-            result
-            (recur
-             (/ (* result (- n i)) (inc i))
-             (inc i)))))))
+  "Calculates the binomial coefficient (n choose k) using iterative and recusive method.
+ n: total number of items
+ k: number of items to choose"
+  [n k]
+  (if (or (< k 0) (> k n))
+    0
+    (let [k (min k (- n k))]                                ; Take advantage of symmetry
+      (loop [result 1N, i 0]
+        (if (= i k)
+          result
+          (recur
+           (/ (* result (- n i)) (inc i))
+           (inc i)))))))
 
 
 (defn probability-distribution
   "Calculates the probability that all groups (of size `num-groups`) receive at least one item
    when distributing `num-items` items randomly across the groups."
   [num-items num-groups]
-  (let [total-ways (Math/pow num-groups num-items) ;; Total number of ways to distribute items
+  (let [total-ways (Math/pow num-groups num-items)          ;; Total number of ways to distribute items
         ;; Sum of cases where at least one group gets no item
         ways-without-full-distribution
         (reduce +
-                (for [k (range 1 (inc num-groups))] ;; Iterate over k groups being empty
+                (for [k (range 1 (inc num-groups))]         ;; Iterate over k groups being empty
                   (* (nck num-groups k) (stirlings2 num-items (- num-groups k)))))]
     ;; Calculate and return the probability
     (- 1 (/ ways-without-full-distribution total-ways))))

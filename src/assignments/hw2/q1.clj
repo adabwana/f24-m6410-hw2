@@ -1,6 +1,7 @@
-(ns assignments.hw1.q1
-  (:require [assignments.hw1.utils :refer :all]
-            [scicloj.kindly.v4.kind :as kind]))
+(ns assignments.hw2.q1
+  (:require
+    [assignments.hw2.utils :refer :all]
+    [scicloj.kindly.v4.kind :as kind]))
 
 
 (question "Question 1")
@@ -71,24 +72,24 @@
 (md
   "**Interpretation:**
 
-  1. When the target is 0.75, we get $P(A|B) = 0.5$.
-  2. The sum $P(A|B) + P(A^c|B) = 1$ holds true.
-  3. The given equation $P(A|B) + 0.5 P(A^c|B) = 0.75$ is satisfied with the calculated probabilities.")
+   1. When the target is 0.75, we get $P(A|B) = 0.5$.
+   2. The sum $P(A|B) + P(A^c|B) = 1$ holds true.
+   3. The given equation $P(A|B) + 0.5 P(A^c|B) = 0.75$ is satisfied with the calculated probabilities.")
 
 
 (md
   "**Implications for Probability:**
 
-  1. $P(A|B)$ represents the probability of event A occurring given that B has occurred.
-  2. $P(A^c|B) = 1 - P(A|B)$ is the probability that A does not occur given that B has occurred.
-  3. The equation $P(A|B) + 0.5 P(A^c|B) = 0.75$ combines these conditional probabilities into a weighted sum.")
+   1. $P(A|B)$ represents the probability of event A occurring given that B has occurred.
+   2. $P(A^c|B) = 1 - P(A|B)$ is the probability that A does not occur given that B has occurred.
+   3. The equation $P(A|B) + 0.5 P(A^c|B) = 0.75$ combines these conditional probabilities into a weighted sum.")
 
 
 (md
   "**Limitations:**
 
-  1. The target value must be between 0.5 and 1 for the probabilities to make sense.
-  2. This method assumes that all events and probabilities are valid within the context of probability theory.")
+   1. The target value must be between 0.5 and 1 for the probabilities to make sense.
+   2. This method assumes that all events and probabilities are valid within the context of probability theory.")
 
 
 (md "**Explanation:**")
@@ -105,9 +106,9 @@
 (md
   "**Note on Implementation:**
 
-  We used a simple linear system solver to find $P(A|B)$. The linear algebra approach illustrates how systems of equations can be solved using matrices, even for basic probability problems.")
+   We used a simple linear system solver to find $P(A|B)$. The linear algebra approach illustrates how systems of equations can be solved using matrices, even for basic probability problems.")
 
 (md
   "**Conclusion:**
 
-  The solution correctly finds $P(A ∩ B) = 0.2$ by first determining $P(A|B) = 0.5$ and then applying the definition of conditional probability.")
+   The solution correctly finds $P(A ∩ B) = 0.2$ by first determining $P(A|B) = 0.5$ and then applying the definition of conditional probability.")

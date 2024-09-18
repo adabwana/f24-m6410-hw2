@@ -1,7 +1,7 @@
 # F24-M6410-HW2
 
 ### Jaryt Salvo
-**Date:** 9-2-2024
+**Date:** 9-18-2024
 
 **Fall 2024 | MATH6410 Probability Theory**
 

@@ -1,7 +1,8 @@
-(ns assignments.hw1.q3
-  (:require [assignments.hw1.utils :refer :all]
-            [clojure.set :as set]
-            [fastmath.core :as m]))
+(ns assignments.hw2.q3
+  (:require
+    [assignments.hw2.utils :refer :all]
+    [clojure.set :as set]
+    [fastmath.core :as m]))
 
 (question "Question 3")
 (sub-question "3) Find two sigma fields with probability assignments for the sample space Ω = {1, 2, 3}.")
@@ -19,9 +20,9 @@
     ; Contains empty set and entire sample space
     (contains? sigma-field #{})
     (contains? sigma-field #{1 2 3})
-     ; Closed under complementation
+    ; Closed under complementation
     (every? #(contains? sigma-field (set/difference #{1 2 3} %)) sigma-field)
-     ; Closed under countable unions (for finite sets, this is equivalent to being closed under all unions)
+    ; Closed under countable unions (for finite sets, this is equivalent to being closed under all unions)
     (every? #(contains? sigma-field (apply set/union %))
             (power-set sigma-field))))
 
@@ -42,13 +43,13 @@
     (and
       ; All probabilities are between 0 and 1
       (every? #(<= 0 % 1) (vals prob-assignment))
-       ; All sets in the probability assignment are in the power set
+      ; All sets in the probability assignment are in the power set
       (every? #(contains? power-set %) (keys prob-assignment))
-       ; Probability of the empty set is 0
+      ; Probability of the empty set is 0
       (m/approx-eq 0.0 (get prob-assignment #{} 0.0))
-       ; Probability of the entire sample space is 1
+      ; Probability of the entire sample space is 1
       (m/approx-eq 1.0 (get prob-assignment sample-space))
-       ; If singleton events are included, sum of their probabilities equals 1
+      ; If singleton events are included, sum of their probabilities equals 1
       (or (not includes-singletons?)
           (m/approx-eq 1.0 (reduce + singleton-probs))))))
 

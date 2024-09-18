@@ -1,12 +1,13 @@
-(ns assignments.hw1.cw6-q5
-  (:require [assignments.hw1.utils :refer :all]
-            [scicloj.kindly.v4.kind :as kind]))
+(ns assignments.hw2.cw6-q5
+  (:require
+    [assignments.hw2.utils :refer :all]
+    [scicloj.kindly.v4.kind :as kind]))
 
 
 (question "EXTRA: CW6 Q5")
 
 (sub-question
- "5) Your phone rings 12 times each week, the calls being randomly distributed among 7 days. What is the probability that you get at least one call each day?")
+  "5) Your phone rings 12 times each week, the calls being randomly distributed among 7 days. What is the probability that you get at least one call each day?")
 
 (md "This problem is equivalent to the Coupon collector's problem, as described in the [MathStackExchange answer](https://math.stackexchange.com/questions/2421875/what-is-the-probability-i-get-at-least-one-call-each-day-if-my-telephone-rings). It can be thought of as 'the probability that a random 12-letter word written with a 7-letter alphabet contains all 7 letters.'")
 
@@ -20,13 +21,13 @@
     [n k]
     (if (or (< k 0) (> k n))
       0
-      (let [k (min k (- n k))] ; Take advantage of symmetry
+      (let [k (min k (- n k))]                              ; Take advantage of symmetry
         (loop [result 1N, i 0]
           (if (= i k)
             result
             (recur
-             (/ (* result (- n i)) (inc i))
-             (inc i))))))))
+              (/ (* result (- n i)) (inc i))
+              (inc i))))))))
 
 (md "**2. Calculate the inclusion-exclusion terms:**")
 
@@ -41,8 +42,8 @@
   [num-items num-groups]
   (map (fn [k]
          (let [sign (if (odd? k) 1 -1)
-               combinations (nck num-groups k)       ; This computes (7 choose k)
-               ways (Math/pow (- num-groups k) num-items)] ; This computes (7-k)^12
+               combinations (nck num-groups k)              ; This computes (7 choose k)
+               ways (Math/pow (- num-groups k) num-items)]  ; This computes (7-k)^12
            (* sign combinations ways)))
        (range 1 (inc num-groups))))
 

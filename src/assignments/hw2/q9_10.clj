@@ -1,6 +1,6 @@
-(ns assignments.hw1.q9-10
+(ns assignments.hw2.q9-10
   (:require
-    [assignments.hw1.utils :refer :all]
+    [assignments.hw2.utils :refer :all]
     [scicloj.hanamicloth.v1.api :as haclo]
     [tablecloth.api :as tc]))
 
