@@ -15,7 +15,8 @@
                           "src/assignments/hw2/q5_6.clj"
                           "src/assignments/hw2/q7_8.clj"
                           "src/assignments/hw2/q9_10.clj"
-                          "src/assignments/hw2/cw6_q5.clj"]
+                          "src/assignments/hw2/cw6_q5.clj"
+                          "src/assignments/hw2/cw6_intuition.clj"]
     :base-target-path    "docs"
     :clean-up-target-dir true}))
 
