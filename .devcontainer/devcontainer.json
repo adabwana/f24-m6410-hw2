@@ -9,8 +9,8 @@
       "extensions": [
         "betterthantomorrow.calva",
         "streetsidesoftware.code-spell-checker",
-        "shaunlebron.vscode-parinfer",
-        "REditorSupport.r"  // Add this line for R support
+        "shaunlebron.vscode-parinfer"
+        // "REditorSupport.r"  // Add this line for R support
       ],
       "settings": {
         "[clojure]": {
@@ -39,8 +39,8 @@
     }
   },
   "mounts": [
-    "source=${localWorkspaceFolder},target=/workspace/probability,type=bind,consistency=cached",
-    "source=/tmp/.X11-unix,target=/tmp/.X11-unix,type=bind,consistency=cached"
+    "source=${localWorkspaceFolder},target=/workspace/probability,type=bind,consistency=cached"
+    // "source=/tmp/.X11-unix,target=/tmp/.X11-unix,type=bind,consistency=cached" // Commented out or remove this line
   ],
   "runArgs": [
     "--gpus", "all",
