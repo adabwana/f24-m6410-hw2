@@ -44,8 +44,9 @@
   ],
   "runArgs": [
     "--gpus", "all",
-    "-e", "DISPLAY=${localEnv:DISPLAY}",
-    "--net", "host"
+    "--net", "host",
+    "-e", "DISPLAY=",
+    "-e", "JAVA_TOOL_OPTIONS=-Djava.awt.headless=true"
   ],
   "forwardPorts": [
     1971, 1972
