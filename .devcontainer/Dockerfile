@@ -52,11 +52,12 @@ USER vscode
 ENV NVIDIA_VISIBLE_DEVICES=all
 ENV NVIDIA_DRIVER_CAPABILITIES=compute,utility
 
-# Set DISPLAY environment variable (might be needed for some GUI applications)
-ENV DISPLAY=host.docker.internal:0
+# # x11 stuff remove
+# # Set DISPLAY environment variable (might be needed for some GUI applications)
+# ENV DISPLAY=host.docker.internal:0
 
-# Ensure the Java AWT libraries can find the X11 libraries
-ENV LD_LIBRARY_PATH=/usr/lib/x86_64-linux-gnu:$LD_LIBRARY_PATH
+# # Ensure the Java AWT libraries can find the X11 libraries
+# ENV LD_LIBRARY_PATH=/usr/lib/x86_64-linux-gnu:$LD_LIBRARY_PATH
 
 # Set Java to run in headless mode by default
 ENV JAVA_TOOL_OPTIONS="-Djava.awt.headless=true"
